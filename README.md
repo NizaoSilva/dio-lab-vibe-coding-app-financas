@@ -1,98 +1,84 @@
-# App de Finanças Pessoais com Vibe Coding
+# App de Match-Maker para vagas com Vibe Coding
 
-Este projeto foi desenvolvido como um Desafio de Projeto da DIO de Vibe Coding utilizando o Lovable e o ChatGPT. A proposta é criar um aplicativo de organização financeira pessoal baseado em interações em linguagem natural.
+Este projeto foi desenvolvido como um Desafio de Projeto da DIO de Vibe Coding utilizando o Lovable e o ChatGPT. A proposta é criar um aplicativo que pontua entre uma vaga e um curriculo completo e o sintetiza para se adaptar a vaga baseado em interações em linguagem natural.
 
 ---
 
 ## 📝 PRD Refinado no ChatGPT
 
 ```markdown
-# Aplicativo de Organização Financeira com Conversa em Linguagem Natural
+Crie uma aplicação web chamada "ATS Match".
 
-## Visão Geral
-Desenvolver um aplicativo de finanças pessoais baseado em conversação, permitindo que o usuário registre e acompanhe sua vida financeira por meio de mensagens em linguagem natural. A proposta é substituir processos burocráticos, como planilhas e formulários, por uma experiência simples, intuitiva e acessível.
+Objetivo:
+Gerar um currículo ATS-friendly personalizado para uma vaga ou projeto.
 
-## Problema
-Grande parte das pessoas abandona o controle financeiro porque considera os aplicativos atuais complexos, com excesso de etapas manuais e pouca adaptação às necessidades individuais. O objetivo é oferecer uma alternativa conversacional, capaz de compreender o usuário e fornecer recomendações personalizadas.
+Fluxo:
+1. Upload do currículo completo (PDF).
+2. Upload de um template de currículo (DOCX ou PDF).
+3. Informar a URL da vaga (LinkedIn, Gupy, GeekHunter, Workana ou qualquer página pública).
 
-## Público-Alvo
-Pessoas que desejam organizar suas finanças de maneira prática e descomplicada, especialmente iniciantes que não possuem experiência com aplicativos de gestão financeira.
+Processamento:
+- Extrair o texto do currículo.
+- Fazer web scraping da URL e obter:
+  - título da vaga
+  - empresa
+  - descrição
+  - requisitos
+  - habilidades
+  - palavras-chave
+- Usar uma LLM para:
+  - comparar currículo e vaga;
+  - identificar lacunas;
+  - reescrever o currículo preservando informações verdadeiras;
+  - destacar experiências relevantes;
+  - inserir naturalmente palavras-chave da vaga;
+  - otimizar para ATS sem inventar experiências ou competências.
+- Preencher o template enviado mantendo seu layout.
 
-## Funcionalidades Principais
-- Registrar receitas e despesas por meio de mensagens em linguagem natural, como "gastei R$ 30 no mercado".
-- Identificar automaticamente o tipo e a categoria de cada transação a partir do texto informado.
-- Permitir a criação e o acompanhamento de metas financeiras, por exemplo, "economizar R$ 500 até o fim do mês".
-- Disponibilizar um assistente financeiro que ofereça sugestões personalizadas para economia com base nos hábitos do usuário.
-- Exibir relatórios claros e personalizados sobre gastos, metas e evolução financeira.
+Saída:
+- Currículo final em DOCX e PDF.
+- Score de compatibilidade (0-100%).
+- Lista de palavras-chave encontradas e ausentes.
+- Resumo das alterações realizadas.
 
-## Design Universal
-O aplicativo será desenvolvido seguindo os princípios do Design Universal, proporcionando uma experiência inclusiva, intuitiva e acessível para diferentes perfis de usuários, independentemente da idade, experiência com tecnologia ou possíveis limitações físicas e cognitivas.
-
-Para isso, deverá contemplar:
-- Interface simples, organizada e de fácil leitura.
-- Navegação intuitiva, com o mínimo de complexidade possível.
-- Compatibilidade com leitores de tela e comandos por voz.
-- Feedback visual e sonoro para tornar a interação mais clara e acessível.
-
-## Entregável Esperado
-Gerar um MVP contendo:
-- As telas principais do aplicativo (chat, metas e relatórios).
-- Os recursos técnicos necessários, incluindo processamento de linguagem natural (NLP), categorização automática de transações e mecanismo de recomendações.
-- Uma estratégia inicial de validação com usuários reais.
-- Conteúdo em português, utilizando linguagem simples, educativa e acessível.
-- Aplicação dos princípios de Design Universal desde as primeiras versões do protótipo.
+Stack:
+Frontend: React + TypeScript.
+Backend: Supabase.
+LLM: OpenAI.
+Código organizado e preparado para futuras funcionalidades.
 ```
 
 ---
 
 ## 💬 Interações com o Lovable
 
-> Crie um App de Finanças Pessoais com base no seguinte PRD (Product Requirements Document): {PRD}
+> Prompt {PRD}
+
+> Executei uma vez, mas parece que não seguiu muito bem o template
+
+> Apareceu Cannot destructure property '__extends' of '__toESM(...).default' as it is undefined.
 
 ---
 
 ## 🎯 Resultado Final
 
 Acesse o protótipo funcional no Lovable:  
-**[wise-chat-wallet.lovable.app](https://wise-chat-wallet.lovable.app/)**
+**[career-craft-pro-32.lovable.app](https://career-craft-pro-32.lovable.app/)**
 
-<img width="900" height="951" alt="image" src="https://github.com/user-attachments/assets/ff1a9842-e005-4cdb-8bf9-a0bf2489a32c" />
+<img width="1209" height="881" alt="image" src="https://github.com/user-attachments/assets/bb6ab9b8-8e9f-4129-9850-a63d337f2de8" />
 
 ---
 
-## 🔍 Funcionalidades do App de Organização Financeira
+## 🔍 Funcionalidades do App
 
-### 1. Dashboard Financeiro
-- Exibe um panorama claro das finanças pessoais:
-  - **Receitas**: Total de ganhos registrados
-  - **Despesas**: Total de gastos
-  - **Saldo**: Diferença entre receitas e despesas
-- Interface simples e direta para facilitar a compreensão
+### 1. Inputs
+- Curriculo completo
+- Curriculo template (opcional)
+- Site da vaga ou texto da vaga
 
-### 2. Assistente Financeiro
-- Personagem conversacional que interage com o usuário
-- Incentiva a conexão de contas e cartões para uma visão completa das finanças
-- Oferece suporte emocional e motivacional
-
-### 3. Registro de Transações via Chat
-- Campo de entrada para o usuário digitar mensagens em linguagem natural
-- Permite registrar gastos e interagir com o assistente de forma fluida
-
-### 4. Metas Financeiras
-- Área dedicada à criação e acompanhamento de objetivos financeiros
-- Sugestão proativa para o usuário definir metas
-- Botão de ação para adicionar novas metas
-
-### 5. Relatórios Personalizados
-- Visualizações simples e adaptadas ao estilo do usuário
-- Acompanhamento de metas e progresso financeiro
-
-### 6. Design Universal
-- Interface acessível e inclusiva:
-  - Linguagem simples
-  - Navegação clara
-  - Compatibilidade com leitores de tela e comandos por voz
-  - Feedbacks visuais e auditivos para facilitar o uso
+### 2. Outputs
+- Score de match entre curriculo e vaga
+- Curriculo revisado com somente o que é pertinente
 
 ---
 
